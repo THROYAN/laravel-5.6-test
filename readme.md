@@ -7,6 +7,16 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+## Quick start
+```bash
+cp .env.example .env
+# You should check and adjust .env file before next step
+docker-compose up -d
+# that's all
+# now you can run some silly commands
+docker-compose exec app php artisan flights:claimability:check test.csv
+```
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
