@@ -25,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(CheckClaimability::class, function ($app) {
+            return new CheckClaimability($app->make(CSVFileParser::class));
+        });
     }
 }
