@@ -37,7 +37,11 @@ class CSVFileParser
 
     private function buildRow(array $data, $header)
     {
-        if (is_array($header) && count($header) == count($data)) {
+        if (is_array($header)) {
+            if (count($header) != count($data)) {
+                throw new \RuntimeException('CSV header is invalid');
+            }
+
             return \array_combine($header, $data);
         }
 
