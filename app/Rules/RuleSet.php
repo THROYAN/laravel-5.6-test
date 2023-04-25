@@ -78,7 +78,7 @@ class RuleSet
             $results = $temp;
         }
         $results = array_map(
-            function ($r) { return is_scalar($r) ? $r : self::fromArray($r); },
+            function ($r) { return (is_scalar($r) || $r instanceof self) ? $r : self::fromArray($r); },
             $results
         );
 
@@ -86,6 +86,6 @@ class RuleSet
             ? $array['map']
             : null;
         
-        return new RuleSet($field, $results, $map);
+        return new self($field, $results, $map);
     }
 }

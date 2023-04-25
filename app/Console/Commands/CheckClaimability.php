@@ -43,6 +43,7 @@ class CheckClaimability extends Command
         ]
     ];
 
+
     /** @var CSVFileParser */
     private $parser;
 
@@ -70,6 +71,14 @@ class CheckClaimability extends Command
 
         $ruleSet = RuleSet::fromArray($this->ruleSet);
 
+        // $rs = new RuleSet('country', [
+        //     '0' => false,
+        //     '1' => new RuleSet('status', [
+        //         'Cancel' => new RuleSet('value', '<=14'),
+        //         'Delay' => new RuleSet('value', '>=3'),
+        //     ]),
+        // ], [self::class, 'isEU']);
+
         foreach ($data as $row) {
             echo \sprintf(
                 '%s %s %s %s',
@@ -81,13 +90,15 @@ class CheckClaimability extends Command
                 //      ($row['status']] == 'Delay' && $row['value] >= 3)
                 // ) ? 'Y' : 'N'
                 $ruleSet->getResult($row) ? 'Y' : 'N'
-            ).\PHP_EOL;
+            );
+            // echo $rs->getResult($row) ? 'Y' : 'N';
+            echo \PHP_EOL;
         }
     }
 
     public static function isEU($country)
     {
-        // dumm
+        // dumm. or not..
         return $country != 'RU';
     }
 }
